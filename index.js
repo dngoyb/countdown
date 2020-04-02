@@ -1,10 +1,9 @@
 class Timer {
-	constructor(durationInput, startButton, pauseButton) {
+	constructor(durationInput, startButton, pauseButton, ascending) {
 		this.durationInput = durationInput;
 		this.startButton = startButton;
 		this.pauseButton = pauseButton;
-
-		// this.timeLeft = parseFloat(this.durationInput.value);
+		this.ascending = ascending;
 
 		this.startButton.addEventListener('click', this.start);
 		this.pauseButton.addEventListener('click', this.pause);
@@ -18,10 +17,14 @@ class Timer {
 		clearInterval(this.interval);
 	};
 	tick = () => {
-		if (this.timeRemaining <= 0) {
-			this.pause();
+		if (this.ascending.checked) {
+			this.timeRemaining = this.timeRemaining + 1;
 		} else {
-			this.timeRemaining = this.timeRemaining - 1;
+			if (this.timeRemaining > 0) {
+				this.timeRemaining = this.timeRemaining - 1;
+			} else {
+				this.pause();
+			}
 		}
 	};
 
@@ -36,5 +39,7 @@ class Timer {
 const durationInput = document.querySelector('#duration');
 const startInput = document.querySelector('#start');
 const pauseButton = document.querySelector('#pause');
+const ascending = document.querySelector('#timeUp');
+console.log(ascending);
 
-const timer1 = new Timer(durationInput, startInput, pauseButton);
+const timer1 = new Timer(durationInput, startInput, pauseButton, ascending);
