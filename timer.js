@@ -1,9 +1,8 @@
 class Timer {
-	constructor(durationInput, startButton, pauseButton, ascending, callbacks) {
+	constructor(durationInput, startButton, pauseButton, callbacks) {
 		this.durationInput = durationInput;
 		this.startButton = startButton;
 		this.pauseButton = pauseButton;
-		this.ascending = ascending;
 
 		if (callbacks) {
 			this.onStart = callbacks.onStart;
@@ -26,19 +25,15 @@ class Timer {
 		clearInterval(this.interval);
 	};
 	tick = () => {
-		if (this.ascending.checked) {
-			this.timeRemaining = this.timeRemaining + 1;
+		if (this.timeRemaining > 0) {
+			this.timeRemaining = this.timeRemaining - 0.02;
+			if (this.onTick) {
+				this.onTick(this.timeRemaining);
+			}
 		} else {
-			if (this.timeRemaining > 0) {
-				this.timeRemaining = this.timeRemaining - 0.02;
-				if (this.onTick) {
-					this.onTick(this.timeRemaining);
-				}
-			} else {
-				this.pause();
-				if (this.onCompleted) {
-					this.onCompleted();
-				}
+			this.pause();
+			if (this.onCompleted) {
+				this.onCompleted();
 			}
 		}
 	};

@@ -3,28 +3,38 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+		/>
+
 		<title>Countdown Clock</title>
 	</head>
 
-	<body>
-		<svg width="400" height="400">
-			<circle
-				cx="200"
-				cy="200"
-				r="190"
-				stroke="green"
-				stroke-width="10"
-				fill="transparent"
-				transform="rotate(-90 200 200)"
-			/>
+	<div class="timer">
+		<div class="controls">
+		  <input id="duration" value="3" />
+		  <div>
+			<button id="start"><i class="fas fa-play"></i></button>
+			<button id="pause"><i class="fas fa-pause"></i></button>
+			<!-- <input type="checkbox" name="timeUp" id="timeUp" value="" /> -->
+		  </div>
+		</div>
+		<svg class="dial">
+		  <circle
+			fill="transparent"
+			stroke="green"
+			stroke-width="15"
+			r="190"
+			cx="0"
+			cy="200"
+			transform="rotate(-90 100 100)"
+		  />
 		</svg>
-		<input type="text" value="30" id="duration" />
-		<input type="button" value="Start" id="start" />
-		<input type="button" value="Pause" id="pause" />
-		<label for="timeUp">Select Ascend</label>
-		<input type="checkbox" name="timeUp" id="timeUp" value="Up" />
-
-		<script src="timer.js"></script>
-		<script src="index.js"></script>
+	  </div>
+  
+	  <script src="timer.js"></script>
+	  <script src="index.js"></script>
 	</body>
 </html>
